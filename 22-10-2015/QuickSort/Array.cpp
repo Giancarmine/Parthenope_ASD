@@ -10,20 +10,44 @@ To Do:
 class Array{
     private:
         int* A;
+        int N;
 
     public:
+        //Array e gestione
             Array (){A = NULL;}; //Costruttore
-        void InsectionSort (int);
-        void MergeSort (int);
-        void Carica (int);
-        void Stampa (int);
-        ~Array(){delete[] A;}
+            ~Array(){delete[] A;};
+        void GetLength ( int );
+        void Carica ();
+        void Stampa ();
+        void Swap ( int&, int& );
+        void Compswap ( int&, int& );
+        //Ordinamenti
+        void InsectionSort ();
+        void MergeSort ();
+        //QuickSort
+        int Partition ( int, int );
+        void OrdinaQuick ( int, int );
+        void QuickSort ();
 };
 
-//Carica N elemementi random al interno del Array A
-void Array :: Carica (int N){
-    int i;
+//Swap
+void Array :: Swap ( int &A, int &B ){
+    int T=A;
+    A=B;
+    B=T;
+}
 
+void Array :: Compswap ( int &A, int &B ){
+    if( B > A ) Swap( A, B );
+}
+
+void Array :: GetLength ( int Length ){
+    N = Length;
+}
+
+//Carica N elemementi random al interno del Array A
+void Array :: Carica (){
+    int i;
     A = new int [N];
     if(A == NULL){
         cout << "Impossibile Allocare memoria per l`Array" << endl;
@@ -34,7 +58,7 @@ void Array :: Carica (int N){
     }
 }
 //Stampa il contenuto Del Array A
-void Array :: Stampa (int N) {
+void Array :: Stampa () {
     int i;
 
     if(A == NULL){
@@ -52,7 +76,7 @@ Autore : Carmine Cuofano
 Data   : 15/12/2014
 							InsectionSort
 ------------------------------------------------------------------------------*/
-void Array :: InsectionSort (int N)
+void Array :: InsectionSort ()
 {
     int i  ,     //Indice
         j  ,	 //Cella successiva a quella puntata
@@ -65,9 +89,7 @@ void Array :: InsectionSort (int N)
         {
             if(A[i]>A[j])    //Crescente
             {
-                App  = A[i];
-                A[i] = A[j];
-                A[j] = App;
+                Swap( A[i], A[j]);
             }
         }
     }
@@ -77,7 +99,7 @@ void Array :: InsectionSort (int N)
 Autore : Carmine Cuofano
 Data   : 15/12/2014
 							Merge
-------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------
 void Array :: Merge (int C[], int A, int N, int B[], int M){
     int i, J, K;
     for ( i=0, J=0, K=0; K < N+M; K++ ){
@@ -94,12 +116,11 @@ void Array :: Merge (int C[], int A, int N, int B[], int M){
         }
     }
 }
-
 /*==============================================================================
 Autore : Carmine Cuofano
 Data   : 15/12/2014
 							MergeSort
-------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------
 void Array :: MergeSort (int C[], int A, int N, int B[], int M){
     int i, J, K;
     for ( i=0, J=0, K=0; K < N+M; K++ ){
@@ -115,4 +136,36 @@ void Array :: MergeSort (int C[], int A, int N, int B[], int M){
             }
         }
     }
+}
+
+/*==============================================================================
+Autore : Carmine Cuofano
+Data   : 22/10/2015
+							QuickSort
+------------------------------------------------------------------------------*/
+
+int Array :: Partition ( int l, int r ){
+    int i = l-1,
+        j = r;
+    int V = A[r];
+    for(j=0; j<i; j++){
+        while( A[++i] < V );
+        while( V < A[--j] ) if (j == l) break;
+        if (i >= j) break;
+        Swap(A[i],A[j]);
+    }
+    Swap(A[i],A[r]);
+    return i;
+}
+
+void Array :: OrdinaQuick(int l, int r){
+    int i;
+    if (r <= l) return;
+    i = Partition(l,r);
+    OrdinaQuick(l,i-1);
+    OrdinaQuick(i+1,r);
+}
+
+void Array :: QuickSort(){
+    OrdinaQuick(0, N-1);
 }
