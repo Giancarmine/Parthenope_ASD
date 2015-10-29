@@ -11,22 +11,25 @@ class Array{
     private:
         int* A;
         int N;
-
+        void Swap ( int&, int& );
+        void Compswap ( int&, int& );
+        //MergeSort In Place
+        void MergeInPlace ( int, int, int );
+        void OrdinaMergeInPlace ( int, int );
+        //QuikSort
+        int Partition ( int, int );
+        void OrdinaQuick ( int, int );
     public:
         //Array e gestione
-            Array (){A = NULL;}; //Costruttore
+            Array (){A = NULL;}; //CostruttoreFirst
             ~Array(){delete[] A;};
         void GetLength ( int );
         void Carica ();
         void Stampa ();
-        void Swap ( int&, int& );
-        void Compswap ( int&, int& );
         //Ordinamenti
         void InsectionSort ();
         void MergeSort ();
-        //QuickSort
-        int Partition ( int, int );
-        void OrdinaQuick ( int, int );
+        void MergeSortInPlace ();
         void QuickSort ();
 };
 
@@ -38,7 +41,7 @@ void Array :: Swap ( int &A, int &B ){
 }
 
 void Array :: Compswap ( int &A, int &B ){
-    if( B > A ) Swap( A, B );
+    if( B > A ) Swap ( A, B );
 }
 
 void Array :: GetLength ( int Length ){
@@ -70,7 +73,6 @@ void Array :: Stampa () {
     }
     cout << endl;
 }
-
 /*==============================================================================
 Autore : Carmine Cuofano
 Data   : 15/12/2014
@@ -86,13 +88,49 @@ void Array :: InsectionSort ()
     for(i=0 ; i < N-1 ; i++)
     {
         for(j = i+1 ; j < N ; j ++)
-        {
-            if(A[i]>A[j])    //Crescente
+        {int* A;
+            if(A[i]>A[j])    //CrescenteRight
             {
                 Swap( A[i], A[j]);
             }
         }
     }
+}
+
+/*==============================================================================
+Autore : Carmine Cuofano
+Data   : 29/10/2015
+							Merge
+------------------------------------------------------------------------------*/
+void Array :: MergeInPlace (int Left, int Center, int Right)
+{
+    int i, j;
+    int* aux;
+    aux = new int [N];
+    for ( i = Center+1; i > Left; i-- ) aux[i-1] = A[i-1];
+    for ( j = Center; j < Right; j++ )  aux [Right+Center-j] = A[j+1];
+    for (int k = Left; k <= Right; k++){
+        if ( aux[j] < aux [i] )
+            A[k] = aux [j--];
+        else
+            A[k] = aux [i++];
+    }
+    delete[] aux;
+}
+
+void Array :: OrdinaMergeInPlace ( int Left, int Right )
+{
+    if ( Left < Right ) {
+        int Center = ( Left+Right )/2;
+        OrdinaMergeInPlace ( Left, Center );
+        OrdinaMergeInPlace ( Center+1, Right );
+        MergeInPlace( Left, Center, Right );
+    }
+}
+
+void Array :: MergeSortInPlace ()
+{
+    OrdinaMergeInPlace ( 0, N-1 );
 }
 
 /*==============================================================================
@@ -118,7 +156,7 @@ void Array :: Merge (int C[], int A, int N, int B[], int M){
 }
 /*==============================================================================
 Autore : Carmine Cuofano
-Data   : 15/12/2014
+Data   : 15/12/2014First
 							MergeSort
 ------------------------------------------------------------------------------
 void Array :: MergeSort (int C[], int A, int N, int B[], int M){
@@ -144,17 +182,21 @@ Data   : 22/10/2015
 							QuickSort
 ------------------------------------------------------------------------------*/
 
-int Array :: Partition ( int l, int r ){
-    int i = l-1,
-        j = r;
-    int V = A[r];
-    for(j=0; j<i; j++){
-        while( A[++i] < V );
-        while( V < A[--j] ) if (j == l) break;
-        if (i >= j) break;
-        Swap(A[i],A[j]);
+int Array :: Partition ( int First, int Last ){
+    int i = First;
+    int Pivot = A[First];
+
+    for(int j = First+1; j <= Last ; j++)
+    {
+        if(A[j] <= Pivot)
+        {
+            j++;
+            Swap(A[j], A[i]);
+        }
     }
-    Swap(A[i],A[r]);
+
+    Swap(A[i], A[First]);
+
     return i;
 }
 

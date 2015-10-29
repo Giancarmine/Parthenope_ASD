@@ -31,6 +31,7 @@ class Array{
         void MergeSort ();
         void MergeSortInPlace ();
         void QuickSort ();
+        void HybridSort ();
 };
 
 //Swap
@@ -210,4 +211,19 @@ void Array :: OrdinaQuick(int l, int r){
 
 void Array :: QuickSort(){
     OrdinaQuick(0, N-1);
+}
+
+/*==============================================================================
+Autore : Carmine Cuofano
+Data   : 29/10/2015
+							HybridSort
+------------------------------------------------------------------------------*/
+void Array :: OrdinaMergeInPlace ( int Left, int Right )
+{
+    QuickSort ( Left, Right );
+    InsectionSort ( Left, Right );
+}
+
+void Array :: HybridSort(){
+    OrdinaHybrid(0, N-1);
 }
