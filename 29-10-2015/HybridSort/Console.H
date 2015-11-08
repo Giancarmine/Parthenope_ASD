@@ -2,6 +2,7 @@
 #include <String>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 #ifdef _WIN32
     #define CLEAR "cls"

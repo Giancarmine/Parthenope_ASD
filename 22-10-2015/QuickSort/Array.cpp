@@ -9,7 +9,7 @@ To Do:
 
 class Array{
     private:
-        int* A;
+        vector <int> A;
         int N;
         void Swap ( int&, int& );
         void Compswap ( int&, int& );
@@ -21,8 +21,8 @@ class Array{
         void OrdinaQuick ( int, int );
     public:
         //Array e gestione
-            Array (){A = NULL;}; //CostruttoreFirst
-            ~Array(){delete[] A;};
+            Array (); //Costruttore
+            ~Array(){ A.clear (); };
         void GetLength ( int );
         void Carica ();
         void Stampa ();
@@ -31,6 +31,7 @@ class Array{
         void MergeSort ();
         void MergeSortInPlace ();
         void QuickSort ();
+        void CountingSort ();
 };
 
 //Swap
@@ -51,24 +52,26 @@ void Array :: GetLength ( int Length ){
 //Carica N elemementi random al interno del Array A
 void Array :: Carica (){
     int i;
-    A = new int [N];
-    if(A == NULL){
-        cout << "Impossibile Allocare memoria per l`Array" << endl;
-    }
-
-    for (i=0; i<N; i++){
+    vector<int> Temp( N,0 );
+    A = Temp;
+    if( A ){
+        for ( i=0; i<N; i++ ){
         A[i] = (rand()%100)+1;
+    }
+    }
+    else {
+        cout << "Impossibile Allocare memoria per l`Array" << endl;
     }
 }
 //Stampa il contenuto Del Array A
 void Array :: Stampa () {
     int i;
 
-    if(A == NULL){
+    if( A == NULL ){
         cout << "Array VUOTO!" << endl;
     }
 
-    for (i=0; i<N; i++){
+    for ( i=0; i<N; i++ ){
         cout << A[i] << "\t";
     }
     cout << endl;
@@ -200,14 +203,46 @@ int Array :: Partition ( int First, int Last ){
     return i;
 }
 
-void Array :: OrdinaQuick(int l, int r){
+void Array :: OrdinaQuick( int First, int Last ){
     int i;
-    if (r <= l) return;
-    i = Partition(l,r);
-    OrdinaQuick(l,i-1);
-    OrdinaQuick(i+1,r);
+    if (Last <= First) return;
+    i = Partition ( First, Last );
+    OrdinaQuick ( First, i-1 );
+    OrdinaQuick ( i+1, Last );
 }
 
 void Array :: QuickSort(){
     OrdinaQuick(0, N-1);
+}
+
+/*==============================================================================
+Autore : Carmine Cuofano
+Data   : 30/10/2015
+							CountingSort
+------------------------------------------------------------------------------*/
+
+void Array :: CountingSort (){
+    int Max, Min, i, M;
+
+    Max = Min = A[0];
+
+    for( i = 0; i < N-1; i++ ){
+        if(A[i]>Max) Max = A[i];
+        else if( A[i] < Min ) Min = A[i];
+    }
+
+    //Definisco la lunghezza del Vectotr di Counting
+    M = Max-Min+1;
+    vector <int> C(M,0);
+    for ( i = 0; i < N; i++ ) C[A[i]-Min]++;
+
+    int k=0;          //indice per l'array A
+    for( i = 0; i < M; i++ ){
+        int valore=i+Min;
+        while(C[i]>0){ //scrive C[i] volte il valore nell'array A
+            A[k++]=i+Min;
+            C[i]--;
+        }
+    }
+    C.clear ();
 }
