@@ -5,6 +5,9 @@ Programma   	: Class Array
 Data    		: 10/10/2015
 
 To Do:
+ - Trasformare il Trova min e max in 1 metodo privato
+ - Usare il push quando
+ - Creare array.h conle definizioni
 -----------------------------------------------------------------------------------------------------*/
 
 class Array{
@@ -21,8 +24,8 @@ class Array{
         void OrdinaQuick ( int, int );
     public:
         //Array e gestione
-            Array (); //Costruttore
-            ~Array(){ A.clear (); };
+            Array (){}; //Costruttore
+            ~Array(){};
         void GetLength ( int );
         void Carica ();
         void Stampa ();
@@ -32,6 +35,7 @@ class Array{
         void MergeSortInPlace ();
         void QuickSort ();
         void CountingSort ();
+        void BucketSort ();
 };
 
 //Swap
@@ -52,26 +56,17 @@ void Array :: GetLength ( int Length ){
 //Carica N elemementi random al interno del Array A
 void Array :: Carica (){
     int i;
-    vector<int> Temp( N,0 );
-    A = Temp;
-    if( A ){
-        for ( i=0; i<N; i++ ){
-        A[i] = (rand()%100)+1;
-    }
-    }
-    else {
-        cout << "Impossibile Allocare memoria per l`Array" << endl;
+
+    for (i=0; i<N; i++){
+        //Per numeri interi -Definizione a 15 bit-
+        A.push_back( (rand()%100)+1 );
     }
 }
 //Stampa il contenuto Del Array A
 void Array :: Stampa () {
     int i;
 
-    if( A == NULL ){
-        cout << "Array VUOTO!" << endl;
-    }
-
-    for ( i=0; i<N; i++ ){
+    for (i=0; i<N; i++){
         cout << A[i] << "\t";
     }
     cout << endl;
@@ -103,7 +98,7 @@ void Array :: InsectionSort ()
 /*==============================================================================
 Autore : Carmine Cuofano
 Data   : 29/10/2015
-							Merge
+							Mergevoid Array :: CountingSort (){
 ------------------------------------------------------------------------------*/
 void Array :: MergeInPlace (int Left, int Center, int Right)
 {
@@ -203,12 +198,12 @@ int Array :: Partition ( int First, int Last ){
     return i;
 }
 
-void Array :: OrdinaQuick( int First, int Last ){
+void Array :: OrdinaQuick(int l, int r){
     int i;
-    if (Last <= First) return;
-    i = Partition ( First, Last );
-    OrdinaQuick ( First, i-1 );
-    OrdinaQuick ( i+1, Last );
+    if (r <= l) return;
+    i = Partition(l,r);
+    OrdinaQuick(l,i-1);
+    OrdinaQuick(i+1,r);
 }
 
 void Array :: QuickSort(){
@@ -245,4 +240,49 @@ void Array :: CountingSort (){
         }
     }
     C.clear ();
+}
+
+
+/*==============================================================================
+Autore : Carmine Cuofano
+Data   : 05/11/2015
+							BucketSort
+------------------------------------------------------------------------------*/
+void Array :: BucketSort (){
+    int i,
+        Max,
+        Min,
+        j,
+        Step,
+        M = 6; // Numero di bucket
+    list <int> C[M];//Creo i Bucket
+
+
+    //Trovo il minimo e il massimo
+    Max = Min = A[0];
+
+    for( i = 0; i < N-1; i++ ){
+        if(A[i]>Max) Max = A[i];
+        else if( A[i] < Min ) Min = A[i];
+    }
+
+    //Definisco il range dei bucket
+    Step = ( Max - Min + 1 ) / ( M - 1 );   //Arrotondato
+
+    //Posiziono nei Bucket
+    for ( i=0; i<N-1; i++ ){
+        C[(A[i] - Min)/Step].push_back ( A[i] );
+    }
+
+    //Ordina i Bucket
+    for ( j=0; j<M-1; j++ ){
+        C[j].sort ();
+    }
+
+    //Concatena i Bucket
+    A.clear ();
+    for ( j=0; j<M; j++ ){
+        for ( //iterator )
+            A.push_back (C[j]);
+    }
 }
