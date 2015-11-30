@@ -15,22 +15,26 @@ To Do:
 #include "ABR.cpp"
 
 int main() {
-
     //Nodi dell'Albero
     ABR Root, B, C, D, E, F, G;
+    int i = 0;
 
     //Foglie
-    F.Build ( NULL, NULL, 'F' ); G.Build ( NULL, NULL, 'G' );
-    C.Build ( NULL, NULL, 'C' ); E.Build ( NULL, NULL, 'E' );
+    F.Build ( NULL, NULL, 'F' );
+    G.Build ( NULL, NULL, 'G' );
+    C.Build ( NULL, NULL, 'C' );
+    E.Build ( NULL, NULL, 'E' );
     //Rami
-    B.Build ( F, G, 'B' ); D.Build ( C, E, 'D' );
+    B.Build ( & F, & G, 'B' );
+    D.Build ( & C, & E, 'D' );
     //Radice
-    Root.Build ( B, D, 'R' );
+    Root.Build ( & B, & D, 'R' );
 
-    Root.Show ( Root, Root.Height ( Root ) );
-    cout << "Height = " << Root.Height ( Root ) << endl;
-    cout << "Count = " << Root.Count ( Root ) << endl;
-    Root.Traverse ( Root, Root.StampaElem );
+    Root.Show ( & Root, Root.Height ( & Root ) );
+    cout << "Height = " << Root.Height ( & Root ) << endl;
+    cout << "Count = " << Root.Count ( & Root ) << endl;
+    cout << "Visitati in Ordine: " << endl;
+    Root.Traverse ( & Root );
 
     return 0;
 }
