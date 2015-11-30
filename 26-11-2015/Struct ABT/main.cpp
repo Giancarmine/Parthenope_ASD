@@ -31,13 +31,13 @@ int count(link h)
 }
 int height(link h)
 {
-    if ( h == 0) return -1;
+    if ( h == 0) return 0;
     int u= height(h ->l), v= height(h ->r);
     if ( u > v) return u+1;
     else return v+1;
 }
 
-void printnode(Item x, int h)
+void printnode(char x, int h)
 {
     for (int i=0; i < h; i++)  cout << " ";
     cout << x << endl;
@@ -49,7 +49,7 @@ void show(link t, int h)
     printnode(t->item, h);
     show(t->l, h+1);
 }
-void build(link t, link l, link r, Item x)
+void build(link t, link l, link r, int x)
 {
 	t->l = l;
 	t->r = r;
