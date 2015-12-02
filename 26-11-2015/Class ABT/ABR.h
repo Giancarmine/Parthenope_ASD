@@ -17,12 +17,12 @@
             ABR * Right;
             //Metodi
             void PrintNode ( char, int );
+            void StampaElem ( char );
         public:
             //Albero e gestione
                 ABR (){ Left = Right = NULL; }; //Costruttore
-                //~ABR(){};
+                ~ABR(){};
             //Metodi
-            void StampaElem ();
             void Traverse ( ABR * );
             int Count ( ABR * );
             int Height ( ABR * );

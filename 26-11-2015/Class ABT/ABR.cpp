@@ -1,7 +1,7 @@
 #include "ABR.h"
 
 //Stampa l'Elemento contenuto nel nodo visitato
-void ABR :: StampaElem(){
+void ABR :: StampaElem ( char Elem ){
     cout << "Nodo visitato = " << Elem << endl;
 }
 
@@ -9,13 +9,13 @@ void ABR :: StampaElem(){
 void ABR :: Traverse ( ABR * Nodo ){
     if ( ! Nodo ) return;
 
-    Nodo->StampaElem ();
+    StampaElem ( Elem );
     Left->Traverse ( Left );
     Right->Traverse ( Right );
 }
 
 //Conta il numero di nodi nel albero
-int ABR :: Count ( ABR * Nodo){
+int ABR :: Count ( ABR * Nodo ){
     if ( ! Nodo ) return 0;
 
     return (Left->Count ( Left ) + Right->Count ( Right ) + 1);

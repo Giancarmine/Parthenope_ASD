@@ -17,16 +17,12 @@ To Do:
 int main() {
     //Nodi dell'Albero
     ABR Root, B, C, D, E, F, G;
-    int i = 0;
 
     //Foglie
-    F.Build ( NULL, NULL, 'F' );
-    G.Build ( NULL, NULL, 'G' );
-    C.Build ( NULL, NULL, 'C' );
-    E.Build ( NULL, NULL, 'E' );
+    F.Build ( NULL, NULL, 'F' );    G.Build ( NULL, NULL, 'G' );
+    C.Build ( NULL, NULL, 'C' );    E.Build ( NULL, NULL, 'E' );
     //Rami
-    B.Build ( & F, & G, 'B' );
-    D.Build ( & C, & E, 'D' );
+    B.Build ( & F, & G, 'B' );    D.Build ( & C, & E, 'D' );
     //Radice
     Root.Build ( & B, & D, 'R' );
 
