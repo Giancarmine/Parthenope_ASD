@@ -18,16 +18,16 @@
             ABR * Right;
             //Metodi
             void PrintNode ( Filler, int );
-            void StampaElem ( Filler );
+            void StampaElem ();
         public:
             //Albero e gestione
                 ABR (){ Left = Right = NULL; }; //Costruttore
                 ~ABR(){};
             //Metodi
-            void Traverse ( ABR < Filler > * );
-            int Count ( ABR < Filler > * );
-            int Height ( ABR < Filler > * );
-            void Show ( ABR < Filler > *, int );
+            void Traverse ();
+            int Count ();
+            int Height ();
+            void Show ( int );
             void Build ( ABR < Filler > *, ABR < Filler > *, Filler );
     };
 #endif // __CLASS_H_INCLUDED__

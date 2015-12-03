@@ -1,35 +1,53 @@
 #include "ABR.h"
 
+/*===================================================================================================
+ABR in classi [C++]
+
+Autore  	    : Carmine Cuofano											Matricola: 0124001424
+Programma   	: ABR -Alberi Binari Di Ricerca- (Slide 19)
+Data    		: 26/10/2015
+
+To Do:
+ - Successivo
+ - Precedente
+ - Insert
+ - Min
+ - Max
+ - Visita in order
+ - Visita Post order
+ - Visita Pre Order
+-----------------------------------------------------------------------------------------------------*/
+
 
 //Stampa l'Elemento contenuto nel nodo visitato
 template< typename  Filler >
-void ABR < Filler > :: StampaElem ( Filler Elem ){
-    cout << "Nodo visitato = " << Elem << endl;
+void ABR < Filler > :: StampaElem (){
+    cout << "Nodo visitato = " << this->Elem << endl;
 }
 
 //Attraversa l'Albero
-template < typename  Filler>
-void ABR < Filler > :: Traverse ( ABR < Filler > * Nodo ){
-    if ( ! Nodo ) return;
+template < typename  Filler >
+void ABR < Filler > :: Traverse (){
+    if ( ! this ) return;
 
-    StampaElem ( Elem );
-    Left->Traverse ( Left );
-    Right->Traverse ( Right );
+    StampaElem ();
+    Left->Traverse ();
+    Right->Traverse ();
 }
 
 //Conta il numero di nodi nel albero
-template < typename Filler>
-int ABR < Filler > :: Count ( ABR < Filler > * Nodo ){
-    if ( ! Nodo ) return 0;
+template < typename Filler >
+int ABR < Filler > :: Count (){
+    if ( ! this ) return 0;
 
-    return (Left->Count ( Left ) + Right->Count ( Right ) + 1);
+    return (Left->Count () + Right->Count () + 1);
 }
 
 //Calcola l'Altezza dell'Albero
-template < typename Filler>
-int ABR < Filler > :: Height ( ABR < Filler > * Nodo ){
-    if ( ! Nodo ) return 0;
-    int U = Left->Height ( Left ), V = Right->Height( Right );
+template < typename Filler >
+int ABR < Filler > :: Height (){
+    if ( ! this ) return 0;
+    int U = Left->Height (), V = Right->Height ();
 
     if ( U > V)
         return U+1;
@@ -38,33 +56,25 @@ int ABR < Filler > :: Height ( ABR < Filler > * Nodo ){
 }
 
 //Stampa il nodo shiftato in base all'Altezza
-template < typename Filler>
+template < typename Filler >
 void ABR < Filler > :: PrintNode ( Filler X, int H ){
     for ( int i=0; i < H; i++ )  cout << " ";
     cout << X << endl;
 }
 
 //Stampa l'intero albero Formattato
-template < typename Filler>
-void ABR < Filler > :: Show ( ABR < Filler > * Nodo, int H ){
-    if ( ! Nodo ) { Nodo->PrintNode ( '*', H ); return;}
-    Right->Show ( Right, H+1 );
-    Nodo->PrintNode ( Elem, H );
-    Left->Show ( Left, H+1 );
+template < typename Filler >
+void ABR < Filler > :: Show ( int H ){
+    if ( ! this ) { this->PrintNode ( '*', H ); return;}
+    Right->Show ( H+1 );
+    this->PrintNode ( Elem, H );
+    Left->Show ( H+1 );
 }
 
 //Crea Un Nodo
-template < typename Filler>
+template < typename Filler >
 void ABR < Filler > :: Build ( ABR < Filler > * L, ABR < Filler > * R, Filler X ){
     Left = L;
     Right = R;
     Elem = X;
 }
-
-/*Ricerca di una chiave
-ABR * ABR :: KeySearch ( ABR * Nodo, Filler Key ){
-    if ( Nodo || Key ==  ) {
-        return Nodo;
-    }
-}
-*/

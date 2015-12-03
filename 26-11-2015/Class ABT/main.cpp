@@ -26,11 +26,11 @@ int main() {
     //Radice
     Root.Build ( & B, & D, 'R' );
 
-    Root.Show ( & Root, Root.Height ( & Root ) );
-    cout << "Height = " << Root.Height ( & Root ) << endl;
-    cout << "Count = " << Root.Count ( & Root ) << endl;
+    Root.Show ( Root.Height () );
+    cout << "Height = " << Root.Height () << endl;
+    cout << "Count = " << Root.Count () << endl;
     cout << "Visitati in Ordine: " << endl;
-    Root.Traverse ( & Root );
+    Root.Traverse ();
 
     return 0;
 }
