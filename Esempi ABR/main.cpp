@@ -6,8 +6,8 @@ using namespace std;
 ABR in classi [C++]
 
 Autore  	    : Carmine Cuofano											Matricola: 0124001424
-Programma   	: ABR -Alberi Binari Di Ricerca- (Slide 19)
-Data    		: 26/10/2015
+Programma   	: ABR -Alberi Binari Di Ricerca-
+Data    		: 03/11/2015
 
 To Do:
 -----------------------------------------------------------------------------------------------------*/
