@@ -1,7 +1,7 @@
 //=================================
 // include guard
-#ifndef __CLASS_H_INCLUDED__
-#define __CLASS_H_INCLUDED__
+#ifndef __CLASS_ABR_INCLUDED__
+#define __CLASS_ABR_INCLUDED__
 
     //=================================
     // included dependencies
@@ -30,4 +30,4 @@
             void Show ( int );
             void Build ( ABR < Filler > *, ABR < Filler > *, Filler );
     };
-#endif // __CLASS_H_INCLUDED__
+#endif // __CLASS_ABR_INCLUDED__

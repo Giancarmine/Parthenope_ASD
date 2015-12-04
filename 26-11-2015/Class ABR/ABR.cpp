@@ -65,7 +65,7 @@ void ABR < Filler > :: PrintNode ( Filler X, int H ){
 //Stampa l'intero albero Formattato
 template < typename Filler >
 void ABR < Filler > :: Show ( int H ){
-    if ( ! this ) { this->PrintNode ( '*', H ); return;}
+    if ( ! this ) { this->PrintNode ( '*', H ); return; }
     Right->Show ( H+1 );
     this->PrintNode ( Elem, H );
     Left->Show ( H+1 );
