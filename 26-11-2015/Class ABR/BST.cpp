@@ -1,6 +1,4 @@
-#include "Console.h"
-
-using namespace std;
+#include "BST.h"
 
 /*===================================================================================================
 BST in classi [C++]
@@ -12,12 +10,16 @@ Data    		: 26/10/2015
 To Do:
 -----------------------------------------------------------------------------------------------------*/
 
-#include "BST.cpp"
 
-int main() {
-    //Dichiaro la Radice dell'Albero
-    BST < int > A;
-    A.CreateNODO (5);
-    return 0;
+//Crea il NODO
+template< typename  Filler >
+void BST < Filler > :: CreateNODO ( Filler X ){
+    this->Root = new NODO < Filler >;
+    if ( this ){
+        this->Root->SetElem ( X );
+        this->Root->PrintNODO ();
+    }
+    else{
+        cout << "IMPOSSIBILE ALLOCARE IL NODO!!!" << endl;
+    }
 }
-

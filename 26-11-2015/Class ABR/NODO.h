@@ -14,9 +14,9 @@
         private:
             //Attributi
             Filler Elem;
-            NODO * Parent;
-            NODO * Left;
-            NODO * Right;
+            NODO < Filler > * Parent;
+            NODO < Filler > * Left;
+            NODO < Filler > * Right;
         public:
             //NODO e gestione
                 NODO (){ Parent = Left = Right = NULL; }; //Costruttore

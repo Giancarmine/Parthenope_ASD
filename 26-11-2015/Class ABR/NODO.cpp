@@ -28,7 +28,7 @@ Filler NODO < Filler > :: GetElem (){
 
 //Collega il Padre al NODO
 template < typename  Filler >
-void NODO < Filler > :: SetRight ( NODO * P ){
+void NODO < Filler > :: SetParent ( NODO * P ){
     if ( ! this ) return;
 
     Parent = P;
@@ -36,7 +36,7 @@ void NODO < Filler > :: SetRight ( NODO * P ){
 
 //Restituisce Padre di NODO
 template < typename Filler >
-NODO * NODO < Filler > :: GetParent (){
+NODO < Filler > * NODO < Filler > :: GetParent (){
     if ( ! this ) return 0;
 
     return Parent;
@@ -52,7 +52,7 @@ void NODO < Filler > :: SetLeft ( NODO * L ){
 
 //Restituisce il figlio Left di NODO
 template < typename Filler >
-NODO * NODO < Filler > :: GetLeft (){
+NODO < Filler > * NODO < Filler > :: GetLeft (){
     if ( ! this ) return 0;
 
     return Left;
@@ -68,7 +68,7 @@ void NODO < Filler > :: SetRight ( NODO * R ){
 
 //Restituisce il figlio Right di NODO
 template < typename Filler >
-NODO * NODO < Filler > :: GetRight (){
+NODO < Filler > * NODO < Filler > :: GetRight (){
     if ( ! this ) return 0;
 
     return Right;
