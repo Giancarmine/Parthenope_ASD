@@ -17,7 +17,43 @@ To Do:
 int main() {
     //Dichiaro la Radice dell'Albero
     BST < int > A;
-    A.CreateNODO (5);
+    int Tasto       ;
+    //A.CreateNODO (5);
+    //Menù delle scelte
+
+
+    do{
+        //Pulisco lo schermo -Win/Linux-
+        system(CLEAR);
+        cout << "/======================Gestione Albero Binario Di Ricerca===============" << endl;
+        cout << endl << endl;
+        cout << " [1] - Inserisci Elemento nell`Albero" << endl;
+        cout << " [2] - Stampa l`ABR" << endl;
+        cout << " [3] - Elimina Elemento dall`Albero" << endl;
+        cout << " [4] - Ricerca" << endl;
+        cout << " [3] - Elimina Elemento dall`Albero" << endl;
+        cout << " [4] - Ricerca" << endl;
+        cout << endl << endl;
+        cout << " [0] - Esci" << endl << endl;
+        cout << "Seleziona : ";
+        cin >> Tasto;
+        switch( Tasto )
+        {
+            case 1 :
+                system(CLEAR);
+                break;
+            case 2 :
+                system(CLEAR);
+                break;
+            case 3 :
+                system(CLEAR);
+                break;
+            case 4 :
+                system(CLEAR);
+                break;
+        }
+    }
+    while ( Tasto != 0 );
     return 0;
 }
 

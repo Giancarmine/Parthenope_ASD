@@ -13,3 +13,4 @@
 #else //In any other OS
     #define CLEAR "clear"
 #endif
+#define ESC 27
