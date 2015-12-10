@@ -21,5 +21,13 @@
                 ~BST (){};
             //Metodi
             void CreateNODO ( Filler );
+            //Visite (Stampe)
+            void InOrderVisit ();
+            void PostOrderVisit ();
+            void PreOrderVisit ();
+            //Ricerche
+            void SearchKey ( Filler );
+            int Minimo ();
+            int Massimo ();
     };
 #endif // __CLASS_ABR_INCLUDED__

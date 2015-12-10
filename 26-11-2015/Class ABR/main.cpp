@@ -18,13 +18,13 @@ int main() {
     //Dichiaro la Radice dell'Albero
     BST < int > A;
     int Tasto       ;
-    //A.CreateNODO (5);
+    A.CreateNODO (5);
     //Menù delle scelte
 
 
     do{
         //Pulisco lo schermo -Win/Linux-
-        system(CLEAR);
+        system ( CLEAR );
         cout << "======================Gestione Albero Binario Di Ricerca======================" << endl;
         cout << endl << endl;
         cout << " [1] - Inserisci Elemento nell`Albero" << endl;
@@ -36,13 +36,13 @@ int main() {
         cout << " [0] - Esci" << endl << endl;
         cout << "Seleziona : ";
         cin >> Tasto;
-        switch( Tasto ){
+        switch ( Tasto ){
             case 1 :    //Inserimento
-                system(CLEAR);
+                system ( CLEAR );
                 break;
             case 2 :    //Stampa l`ABR
                 do{
-                    system(CLEAR);
+                    system ( CLEAR );
                     cout << "======================Stampa l`ABR======================" << endl;
                     cout << endl << endl;
                     cout << " [1] - Stampa IN-Order" << endl;
@@ -52,24 +52,27 @@ int main() {
                     cout << " [0] - Esci" << endl << endl;
                     cout << "Seleziona : ";
                     cin >> Tasto;
-                    switch( Tasto ){
-                        case 1 :
-                            system(CLEAR);
+                    switch ( Tasto ){
+                        case 1 :    //Stampa IN-Order
+                            system (CLEAR);
+                            A.InOrderVisit ();
                             break;
-                        case 2 :
-                            system(CLEAR);
+                        case 2 :    //Stampa POST-Order
+                            system (CLEAR);
+                            A.PostOrderVisit ();
                             break;
-                        case 3 :
-                            system(CLEAR);
+                        case 3 :    //Stampa PRE-Order
+                            system (CLEAR);
+                            A.PreOrderVisit ();
                             break;
                     }
                 }
                 while ( Tasto != 0 );
-                cin.clear();
+                cin.clear ();
                 Tasto = -1;
                 break;
             case 3 :    //Eliminazione
-                system(CLEAR);
+                system ( CLEAR );
                 break;
             case 4 :    //Ricerche
                 do{
