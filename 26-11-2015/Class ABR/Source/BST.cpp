@@ -26,18 +26,19 @@ void BST < Filler > :: CreateNODO ( Filler X ){
 
 //Stampa Visitando InOrder
 template< typename  Filler >
-void BST < Filler > :: InOrderVisit (){
-    if ( this ){
-        this->Root->GetLeft ()->InOrderVisit ();
+void BST < Filler > :: InOrderVisit ( NODO * Nodo ){
+    if ( this && Nodo ){
+        this->InOrderVisit ( Nodo->GetLeft () );
         this->Root->PrintNODO ();
-		this->Root->GetRight ()->InOrderVisit ();
+		this->InOrderVisit ( Nodo->GetRight () );
     }
     else{
         cout << "L`Albero E`Vuoto!!!" << endl;
     }
 }
 
-/*Stampa Visitando PostOrder
+/*
+//Stampa Visitando PostOrder
 template< typename  Filler >
 void BST < Filler > :: PostOrderVisit (){
     if ( this ){
@@ -79,7 +80,7 @@ void BST < Filler > :: SearchKey ( Filler Key ){
 
 //Ricerca il minimo
 template< typename  Filler >
-int BST < Filler > :: Minimo (){
+Filler BST < Filler > :: Minimo (){
     //L = this->Left;
     while ( L ){
             //X = Left->Elem;
@@ -90,7 +91,7 @@ int BST < Filler > :: Minimo (){
 
 //Ricerca il MASSIMO
 template< typename  Filler >
-int BST < Filler > :: Massimo (){
+Filler BST < Filler > :: Massimo (){
     //R = this->Right;
     while ( R ){
             //X = Right->Elem;
@@ -101,7 +102,28 @@ int BST < Filler > :: Massimo (){
 
 //Ricerca Sucessore
 template< typename  Filler >
-int BST < Filler > :: Sucessore (){
-
+NODO * BST < Filler > :: Sucessore ( Filler Key ){
+    Filler Elem;
+    Elem = this->Root->GetElem ();
+    Z = this;
+    //Y = NULL;
+    while ( Z && Elem != Key){
+        if ( Elem < Key ){
+            //Z = Right;
+        }
+        else {
+            if ( Elem > Key ){
+                //Y = Z;
+                //Z = Left;
+            }
+        }
+    }
+    if ( Z && Z.Right ){
+        return Right->Minimo;
+    }
+    else {
+        return Y;
+    }
 }
+
 */

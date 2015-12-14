@@ -10,7 +10,7 @@
 
     //=================================
     //Classe templata
-    template <class Filler>
+    template < class Filler >
     class BST {
         private:
             //Attributi
