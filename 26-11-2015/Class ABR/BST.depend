@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1450352614 source:c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\bst.cpp
+	"Console.h"
+	"BST.h"
+
+1450258623 c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\console.h
+	<iostream>
+	<stdio.h>
+	<String>
+	<cstdlib>
+	<ctime>
+	<climits>
+	<algorithm>
+	<vector>
+	<list>
+	<map>
+
+1450348980 c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\bst.h
+	"Console.h"
+	"NODO.cpp"
+
+1450351923 c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\nodo.cpp
+	"NODO.h"
+
+1450205342 c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\nodo.h
+	"Console.h"
+
+1450353645 source:c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\main.cpp
+	"Console.h"
+	"BST.h"
+	"BST.cpp"
+
+1450354134 c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\bst.cpp
+	"Console.h"
+	"BST.h"
+
+1450351923 source:c:\users\hp\documents\parthenope_asd\26-11-2015\class abr\source\nodo.cpp
+	"NODO.h"
+

@@ -77,10 +77,11 @@ NODO < Filler > * NODO < Filler > :: GetRight (){
 //Stampa il Valore di elem
 template < typename Filler >
 void NODO < Filler > :: PrintNODO (){
-    if ( ! this ){
-        cout << "NODO INESISTENTE!" << endl;
-        return;
+    if ( this ){
+        std :: cout << "NODO visitato: " << this->GetElem () << std :: endl ;
     }
-    cout << "NODO visitato: " << Elem << endl ;
+    else{
+        std :: cout << "NODO INESISTENTE!" << std :: endl;
+    }
 }
 

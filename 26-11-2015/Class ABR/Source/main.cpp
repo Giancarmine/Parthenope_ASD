@@ -1,4 +1,5 @@
 #include "Console.h"
+#include "BST.h"
 
 using namespace std;
 
@@ -17,11 +18,10 @@ To Do:
 int main() {
     //Dichiaro la Radice dell'Albero
     BST < int > A;
-    int Tasto       ;
-    A.CreateNODO (5);
+    int Key;
+    int Tasto;
+
     //Menù delle scelte
-
-
     do{
         //Pulisco lo schermo -Win/Linux-
         system ( CLEAR );
@@ -39,6 +39,11 @@ int main() {
         switch ( Tasto ){
             case 1 :    //Inserimento
                 system ( CLEAR );
+                cout << " Inserisci il valore da Inserire: ";
+                cin >> Key;
+                //Carico un'NODO e lo attacca in modo corretto al Albero
+                A.CreateNODO ( Key );
+                system("pause"); // "Press enter"
                 break;
             case 2 :    //Stampa l`ABR
                 do{
@@ -55,15 +60,21 @@ int main() {
                     switch ( Tasto ){
                         case 1 :    //Stampa IN-Order
                             system (CLEAR);
-                            A.InOrderVisit ();
+                            A.InOrderVisit ( A.GetRoot () );
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                         case 2 :    //Stampa POST-Order
                             system (CLEAR);
-                            A.PostOrderVisit ();
+                            A.PostOrderVisit ( A.GetRoot () );
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                         case 3 :    //Stampa PRE-Order
                             system (CLEAR);
-                            A.PreOrderVisit ();
+                            A.PreOrderVisit ( A.GetRoot () );
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                     }
                 }
@@ -87,14 +98,40 @@ int main() {
                     cout << "Seleziona : ";
                     cin >> Tasto;
                     switch( Tasto ){
-                        case 1 :
-                            system(CLEAR);
+                        case 1 :    //Ricerca un`Elemento
+                            system ( CLEAR );
+                            cout << "Inserisci il Valore da Ricercare: ";
+                            cin >> Key;
+                            if ( A.SearchKey ( A.GetRoot (), Key ) ){
+                                cout << "L`Elemento e`Presente" << endl;
+                            }
+                            else{
+                                cout << "L`Elemento NON e`presente nell`Albero" << endl;
+                            }
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                         case 2 :
                             system(CLEAR);
+                            if ( A.GetRoot () ){
+                                cout << "L`Elemento e`: " << A.Minimo ( A.GetRoot () ) <<  endl;
+                            }
+                            else{
+                                cout << "L`Albero E`Vuoto!" << endl;
+                            }
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                         case 3 :
                             system(CLEAR);
+                            if ( A.GetRoot () ){
+                                cout << "L`Elemento e`: " << A.Massimo ( A.GetRoot () ) <<  endl;
+                            }
+                            else{
+                                cout << "L`Albero E`Vuoto!" << endl;
+                            }
+                            cout << endl;
+                            system("pause"); // "Press enter"
                             break;
                     }
                 }

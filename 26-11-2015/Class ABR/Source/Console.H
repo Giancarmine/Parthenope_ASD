@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <String>
 #include <cstdlib>
 #include <ctime>
