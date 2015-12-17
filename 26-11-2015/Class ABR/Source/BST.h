@@ -33,6 +33,9 @@
             Filler Minimo ( NODO < Filler > * );
             Filler Massimo ( NODO < Filler > * );
             NODO < Filler > * Successore ( NODO < Filler > *, Filler );
+            void ElimCasoUno ( NODO < Filler > * );
+            void ElimCasoDue ( NODO < Filler > * );
+            //void ElimCasoTre ( NODO < Filler > * )
             void EliminaElemento ( NODO < Filler > *, Filler );
     };
 #endif // __CLASS_ABR_INCLUDED__
