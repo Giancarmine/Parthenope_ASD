@@ -29,9 +29,8 @@ int main() {
         cout << endl << endl;
         cout << " [1] - Inserisci Elemento nell`Albero" << endl;
         cout << " [2] - Stampa l`ABR" << endl;
-        cout << " [3] - Elimina Elemento dall`Albero" << endl;
+        cout << " [3] - Eliminazioni" << endl;
         cout << " [4] - Ricerche" << endl;
-        cout << " [5] - Rotazioni" << endl;
         cout << endl << endl;
         cout << " [0] - Esci" << endl << endl;
         cout << "Seleziona : ";
@@ -84,6 +83,10 @@ int main() {
                 break;
             case 3 :    //Eliminazione
                 system ( CLEAR );
+                cout << " Inserisci il valore da Eliminare: ";
+                cin >> Key;
+                A.EliminaElemento ( A.GetRoot (), Key );
+                system("pause"); // "Press enter"
                 break;
             case 4 :    //Ricerche
                 do{
@@ -132,30 +135,6 @@ int main() {
                             }
                             cout << endl;
                             system("pause"); // "Press enter"
-                            break;
-                    }
-                }
-                while ( Tasto != 0 );
-                cin.clear();
-                Tasto = -1;
-                break;
-            case 5 :    //Rotazioni
-                do{
-                    system(CLEAR);
-                    cout << "======================Rotazioni======================" << endl;
-                    cout << endl << endl;
-                    cout << " [1] - Rotazione a DX" << endl;
-                    cout << " [2] - Rotazione a SX" << endl;
-                    cout << endl << endl;
-                    cout << " [0] - Esci" << endl << endl;
-                    cout << "Seleziona : ";
-                    cin >> Tasto;
-                    switch( Tasto ){
-                        case 1 :
-                            system(CLEAR);
-                            break;
-                        case 2 :
-                            system(CLEAR);
                             break;
                     }
                 }

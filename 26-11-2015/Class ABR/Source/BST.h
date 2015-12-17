@@ -32,6 +32,7 @@
             NODO < Filler > * SearchKey ( NODO < Filler > *, Filler );
             Filler Minimo ( NODO < Filler > * );
             Filler Massimo ( NODO < Filler > * );
-            NODO < Filler > * Sucessore ( NODO < Filler > *, Filler );
+            NODO < Filler > * Successore ( NODO < Filler > *, Filler );
+            void EliminaElemento ( NODO < Filler > *, Filler );
     };
 #endif // __CLASS_ABR_INCLUDED__
