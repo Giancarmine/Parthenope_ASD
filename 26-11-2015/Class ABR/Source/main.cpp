@@ -35,10 +35,11 @@ int main() {
         cout << " [0] - Esci" << endl << endl;
         cout << "Seleziona : ";
         cin >> Tasto;
+        cin.clear ();
         switch ( Tasto ){
             case 1 :    //Inserimento
                 system ( CLEAR );
-                cout << " Inserisci il valore da Inserire: ";
+                cout << "Inserisci il valore da Inserire: ";
                 cin >> Key;
                 //Carico un'NODO e lo attacca in modo corretto al Albero
                 A.CreateNODO ( Key );
@@ -56,6 +57,7 @@ int main() {
                     cout << " [0] - Esci" << endl << endl;
                     cout << "Seleziona : ";
                     cin >> Tasto;
+                    cin.clear ();
                     switch ( Tasto ){
                         case 1 :    //Stampa IN-Order
                             system (CLEAR);
@@ -83,9 +85,10 @@ int main() {
                 break;
             case 3 :    //Eliminazione
                 system ( CLEAR );
-                cout << " Inserisci il valore da Eliminare: ";
+                cout << "Inserisci il valore da Eliminare: ";
                 cin >> Key;
                 A.EliminaElemento ( A.GetRoot (), Key );
+                cout << endl;
                 system("pause"); // "Press enter"
                 break;
             case 4 :    //Ricerche
@@ -100,6 +103,7 @@ int main() {
                     cout << " [0] - Esci" << endl << endl;
                     cout << "Seleziona : ";
                     cin >> Tasto;
+                    cin.clear ();
                     switch( Tasto ){
                         case 1 :    //Ricerca un`Elemento
                             system ( CLEAR );

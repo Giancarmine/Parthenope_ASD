@@ -112,6 +112,7 @@ NODO < Filler > * BST < Filler > :: SearchKey ( NODO < Filler > * Nodo, Filler K
 template< typename  Filler >
 Filler BST < Filler > :: Minimo ( NODO < Filler > * Nodo ){
     Filler X;
+    X = 0;
     //Se esiste l'Albero
     if ( this && Nodo ){
         X = Nodo->GetElem ();
@@ -119,17 +120,18 @@ Filler BST < Filler > :: Minimo ( NODO < Filler > * Nodo ){
             Nodo = Nodo->GetLeft ();
             X = Nodo->GetElem ();
         }
-        return X;
     }
     else{
         std :: cout << "L`Albero E`Vuoto!!!" << std :: endl;
     }
+    return X;
 }
 
 //Ricerca il MASSIMO
 template< typename  Filler >
 Filler BST < Filler > :: Massimo ( NODO < Filler > * Nodo ){
     Filler X;
+    X = 0;
     //Se esiste l'Albero
     if ( this && Nodo ){
         X = Nodo->GetElem ();
@@ -137,11 +139,11 @@ Filler BST < Filler > :: Massimo ( NODO < Filler > * Nodo ){
             Nodo = Nodo->GetRight ();
             X = Nodo->GetElem ();
         }
-        return X;
     }
     else{
         std :: cout << "L`Albero E`Vuoto!!!" << std :: endl;
     }
+    return X;
 }
 
 //Crea il NODO
@@ -212,7 +214,7 @@ NODO < Filler > * BST < Filler > :: Successore ( NODO < Filler > * Nodo, Filler 
     }
 }
 
-//eliminazione, primo caso
+//Eliminazione, Primo Caso
 template< typename  Filler >
 void BST < Filler > :: ElimCasoUno ( NODO < Filler > * Nodo){
     NODO < Filler > * Padre;
@@ -232,13 +234,14 @@ void BST < Filler > :: ElimCasoUno ( NODO < Filler > * Nodo){
     }
 }
 
-//eliminazione, secondo caso
+//Eliminazione, Secondo Caso
 template< typename  Filler >
 void BST < Filler > :: ElimCasoDue ( NODO < Filler > * Nodo){
     NODO < Filler > * OldRoot;
     NODO < Filler > * Padre;
     NODO < Filler > * Figlio;
 
+    //Se Non è la radice
     if ( Nodo->GetParent () ){
         Padre = Nodo->GetParent ();
         //Se Nodo è il figlio Sx del Padre
@@ -273,7 +276,68 @@ void BST < Filler > :: ElimCasoDue ( NODO < Filler > * Nodo){
         }
         delete Nodo;
     }
-        //Elimina la Radice
+    //Elimina la Radice
+    else{
+            //A seconda se il nodo ha figlio SX o DX
+            //Rimpiazza il figlio Dx del Padre con mio Figlio
+            OldRoot = this->GetRoot ();
+            if ( Nodo->GetLeft () ){
+                this->SetRoot ( Nodo->GetLeft () );
+                Figlio = Nodo->GetLeft ();
+                Figlio->SetParent ( NULL );
+            }
+            else{
+                this->SetRoot ( Nodo->GetRight () );
+                Figlio = Nodo->GetRight ();
+                Figlio->SetParent ( NULL );
+            }
+            delete OldRoot;
+    }
+}
+/*
+//Eliminazione, Terzo Caso
+template< typename  Filler >
+void BST < Filler > :: ElimCasoDue ( NODO < Filler > * Nodo){
+    NODO < Filler > * OldRoot;
+    NODO < Filler > * Padre;
+    NODO < Filler > * Figlio;
+
+    //Se Non è la radice
+    if ( Nodo->GetParent () ){
+        Padre = Nodo->GetParent ();
+        //Se Nodo è il figlio Sx del Padre
+        if ( Padre->GetLeft () == Nodo ){
+            //A seconda se il nodo ha figlio SX o DX
+            //Rimpiazza il figlio Sx del Padre con mio Figlio
+            if ( Nodo->GetLeft () ){
+                Padre->SetLeft ( Nodo->GetLeft () );
+                Figlio = Nodo->GetLeft ();
+                Figlio->SetParent ( Padre );
+            }
+            else{
+                Padre->SetLeft ( Nodo->GetRight () );
+                Figlio = Nodo->GetRight ();
+                Figlio->SetParent ( Padre );
+            }
+        }
+        //Se Nodo è il figlio Dx del Padre
+        else {
+            //A seconda se il nodo ha figlio SX o DX
+            //Rimpiazza il figlio Dx del Padre con mio Figlio
+            if ( Nodo->GetLeft () ){
+                Padre->SetRight ( Nodo->GetLeft () );
+                Figlio = Nodo->GetLeft ();
+                Figlio->SetParent ( Padre );
+            }
+            else{
+                Padre->SetRight ( Nodo->GetRight () );
+                Figlio = Nodo->GetRight ();
+                Figlio->SetParent ( Padre );
+            }
+        }
+        delete Nodo;
+    }
+    //Elimina la Radice
     else{
             //A seconda se il nodo ha figlio SX o DX
             //Rimpiazza il figlio Dx del Padre con mio Figlio
@@ -293,24 +357,8 @@ void BST < Filler > :: ElimCasoDue ( NODO < Filler > * Nodo){
 }
 
 
-//parti dalla radice, cerca la chiave e poi applica l'eliminazione
-template< typename  Filler >
-void BST < Filler > :: EliminaElemento ( NODO < Filler > * Nodo, Filler Key ){
-    NODO < Filler > * OldRoot;
-    NODO < Filler > * Padre;
-    NODO < Filler > * Figlio;
-    if( this && Nodo ){
-        //RICERCA DELLA KEY
-        if ( Nodo = SearchKey ( Nodo, Key ) ){
-            //CASO 1: NODO SENZA FIGLI
-            if ( !Nodo->GetLeft () && !Nodo->GetRight () ){
-                ElimCasoUno( Nodo );
-            }
-            else{
-                //Almeno Uno
-                if ( Nodo->GetLeft () && Nodo->GetRight () ){
-                    /*CASO 3: NODO CON DUE FIGLI
-                    //Se Non è la radice
+
+//Se Non è la radice
                     if ( Nodo->GetParent () ){
                         Padre = Nodo->GetParent ();
                         //Se Nodo è il figlio Sx del Padre
@@ -362,10 +410,27 @@ void BST < Filler > :: EliminaElemento ( NODO < Filler > * Nodo, Filler Key ){
                         }
                         delete OldRoot;
                     }*/
+
+
+
+//parti dalla radice, cerca la chiave e poi applica l'eliminazione scegliendo il caso corretto .
+template< typename  Filler >
+void BST < Filler > :: EliminaElemento ( NODO < Filler > * Nodo, Filler Key ){
+
+    if( this && Nodo ){
+        //RICERCA DELLA KEY
+        if ( ( Nodo = SearchKey ( Nodo, Key ) ) ){
+            //CASO 1: NODO SENZA FIGLI
+            if ( !Nodo->GetLeft () && !Nodo->GetRight () ){
+                ElimCasoUno( Nodo );
+            }
+            else{
+                //Almeno Uno
+                if ( Nodo->GetLeft () && Nodo->GetRight () ){
+                    //CASO 3: NODO CON DUE FIGLI
                 }
                 else{
                     //CASO 2: NODO CON UN FIGLIO
-                    //Se Non è la radice
                     ElimCasoDue( Nodo );
                 }
             }

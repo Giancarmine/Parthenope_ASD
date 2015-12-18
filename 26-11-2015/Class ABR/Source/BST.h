@@ -14,6 +14,14 @@
         private:
             //Attributi
             NODO < Filler > * Root;
+            //Metodi
+            void Inserimento ( NODO < Filler > *, NODO < Filler > * );
+            //Eliminazioni
+            NODO < Filler > * Successore ( NODO < Filler > *, Filler );
+            void ElimCasoUno ( NODO < Filler > * );
+            void ElimCasoDue ( NODO < Filler > * );
+            //void ElimCasoTre ( NODO < Filler > * );
+
         public:
             //Albero e gestione
                 BST (){ Root = NULL; }; //Costruttore
@@ -23,7 +31,6 @@
             void SetRoot ( NODO < Filler > * Nodo ) { Root = Nodo; };
             //Inserimento
             void CreateNODO ( Filler );
-            void Inserimento ( NODO < Filler > *, NODO < Filler > * );
             //Visite (Stampe)
             void InOrderVisit ( NODO < Filler > * );
             void PostOrderVisit ( NODO < Filler > * );
@@ -32,10 +39,7 @@
             NODO < Filler > * SearchKey ( NODO < Filler > *, Filler );
             Filler Minimo ( NODO < Filler > * );
             Filler Massimo ( NODO < Filler > * );
-            NODO < Filler > * Successore ( NODO < Filler > *, Filler );
-            void ElimCasoUno ( NODO < Filler > * );
-            void ElimCasoDue ( NODO < Filler > * );
-            //void ElimCasoTre ( NODO < Filler > * )
+            //Eliminazione
             void EliminaElemento ( NODO < Filler > *, Filler );
     };
 #endif // __CLASS_ABR_INCLUDED__
