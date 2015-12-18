@@ -20,7 +20,7 @@
             NODO < Filler > * Successore ( NODO < Filler > *, Filler );
             void ElimCasoUno ( NODO < Filler > * );
             void ElimCasoDue ( NODO < Filler > * );
-            //void ElimCasoTre ( NODO < Filler > * );
+            void ElimCasoTre ( NODO < Filler > * );
 
         public:
             //Albero e gestione
